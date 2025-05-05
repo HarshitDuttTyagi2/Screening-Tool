@@ -180,7 +180,7 @@ function DetailsPopup({
                   <div
                     className={`w-[96px] overflow-hidden rounded-full ${
                       selectedInterviewer === item.id
-                        ? "border-4 border-indigo-600"
+                        ? "border-4 border-green-600"
                         : ""
                     }`}
                     onClick={() => setSelectedInterviewer(item.id)}
@@ -242,7 +242,7 @@ function DetailsPopup({
               <Switch
                 checked={isAnonymous}
                 className={`ml-4 mt-1 ${
-                  isAnonymous ? "bg-indigo-600" : "bg-[#E6E7EB]"
+                  isAnonymous ? "bg-green-600" : "bg-[#E6E7EB]"
                 }`}
                 onCheckedChange={(checked) => setIsAnonymous(checked)}
               />
@@ -261,7 +261,7 @@ function DetailsPopup({
               <input
                 type="number"
                 step="1"
-                max="5"
+                max="8"
                 min="1"
                 className="border-b-2 text-center focus:outline-none  border-gray-500 w-14 px-2 py-0.5 ml-3"
                 value={numQuestions}
@@ -271,9 +271,9 @@ function DetailsPopup({
                     value === "" ||
                     (Number.isInteger(Number(value)) && Number(value) > 0)
                   ) {
-                    if (Number(value) > 5) {
-                      value = "5";
-                    }
+                    // if (Number(value) > 5) {
+                    //   value = "5";
+                    // }
                     setNumQuestions(value);
                   }
                 }}
@@ -284,7 +284,7 @@ function DetailsPopup({
               <input
                 type="number"
                 step="1"
-                max="10"
+                max="30"
                 min="1"
                 className="border-b-2 text-center focus:outline-none  border-gray-500 w-14 px-2 py-0.5 ml-3"
                 value={duration}
@@ -294,9 +294,9 @@ function DetailsPopup({
                     value === "" ||
                     (Number.isInteger(Number(value)) && Number(value) > 0)
                   ) {
-                    if (Number(value) > 10) {
-                      value = "10";
-                    }
+                    // if (Number(value) > 10) {
+                    //   value = "10";
+                    // }
                     setDuration(value);
                   }
                 }}
@@ -314,7 +314,7 @@ function DetailsPopup({
                   ? false
                   : true) || isClicked
               }
-              className="bg-indigo-600 hover:bg-indigo-800  w-40"
+              className="bg-green-600 hover:bg-green-800  w-40"
               onClick={() => {
                 setIsClicked(true);
                 onGenrateQuestions();
@@ -332,7 +332,7 @@ function DetailsPopup({
                   ? false
                   : true) || isClicked
               }
-              className="bg-indigo-600 w-40 hover:bg-indigo-800"
+              className="bg-green-600 w-40 hover:bg-green-800"
               onClick={() => {
                 setIsClicked(true);
                 onManual();

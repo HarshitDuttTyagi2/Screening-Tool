@@ -50,7 +50,7 @@ function TabSwitchWarning() {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogAction
-            className="bg-indigo-400 hover:bg-indigo-600 text-white"
+            className="bg-green-400 hover:bg-green-600 text-white"
             onClick={handleUnderstand}
           >
             I understand

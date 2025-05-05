@@ -162,7 +162,7 @@ function CallInfo({
         </div>
       ) : (
         <>
-          <div className="bg-slate-200 rounded-2xl min-h-[120px] p-4 px-5 y-3">
+          <div className="bg-white-200 rounded-2xl min-h-[120px] p-4 px-5 y-3">
             <div className="flex flex-col justify-between bt-2">
               {/* <p className="font-semibold my-2 ml-2">
                 Response Analysis and Insights
@@ -170,7 +170,7 @@ function CallInfo({
               <div>
                 <div className="flex justify-between items-center pb-4 pr-2">
                   <div
-                    className=" inline-flex items-center text-indigo-600 hover:cursor-pointer"
+                    className=" inline-flex items-center text-green-600 hover:cursor-pointer"
                     onClick={() => {
                       router.push(`/interviews/${interviewId}`);
                     }}
@@ -210,7 +210,7 @@ function CallInfo({
                         onCandidateStatusChange(call_id, newValue);
                       }}
                     >
-                      <SelectTrigger className="w-[180px]  bg-slate-50 rounded-2xl">
+                      <SelectTrigger className="w-[180px]  bg-white-50 rounded-2xl">
                         <SelectValue placeholder="Not Selected" />
                       </SelectTrigger>
                       <SelectContent>
@@ -264,7 +264,7 @@ function CallInfo({
                           <AlertDialogCancel>Cancel</AlertDialogCancel>
 
                           <AlertDialogAction
-                            className="bg-indigo-600 hover:bg-indigo-800"
+                            className="bg-green-600 hover:bg-green-800"
                             onClick={async () => {
                               await onDeleteResponseClick();
                             }}
@@ -296,19 +296,19 @@ function CallInfo({
             </div>
             {/* <div>{call.}</div> */}
           </div>
-          <div className="bg-slate-200 rounded-2xl min-h-[120px] p-4 px-5 my-3">
+          <div className="bg-white-200 rounded-2xl min-h-[120px] p-4 px-5 my-3">
             <p className="font-semibold my-2">General Summary</p>
 
             <div className="grid grid-cols-3 gap-4 my-2 mt-4 ">
               {analytics?.overallScore !== undefined && (
-                <div className="flex flex-col gap-3 text-sm p-4 rounded-2xl bg-slate-50">
+                <div className="flex flex-col gap-3 text-sm p-4 rounded-2xl bg-white-50">
                   <div className="flex flex-row gap-2 align-middle">
                     <CircularProgress
                       classNames={{
                         svg: "w-28 h-28 drop-shadow-md",
-                        indicator: "stroke-indigo-600",
-                        track: "stroke-indigo-600/10",
-                        value: "text-3xl font-semibold text-indigo-600",
+                        indicator: "stroke-green-600",
+                        track: "stroke-green-600/10",
+                        value: "text-3xl font-semibold text-green-600",
                       }}
                       value={analytics?.overallScore}
                       strokeWidth={4}
@@ -332,14 +332,14 @@ function CallInfo({
                 </div>
               )}
               {analytics?.communication && (
-                <div className="flex flex-col gap-3 text-sm p-4 rounded-2xl bg-slate-50">
+                <div className="flex flex-col gap-3 text-sm p-4 rounded-2xl bg-white-50">
                   <div className="flex flex-row gap-2 align-middle">
                     <CircularProgress
                       classNames={{
                         svg: "w-28 h-28 drop-shadow-md",
-                        indicator: "stroke-indigo-600",
-                        track: "stroke-indigo-600/10",
-                        value: "text-3xl font-semibold text-indigo-600",
+                        indicator: "stroke-green-600",
+                        track: "stroke-green-600/10",
+                        value: "text-3xl font-semibold text-green-600",
                       }}
                       value={analytics?.communication.score}
                       maxValue={10}
@@ -368,7 +368,7 @@ function CallInfo({
                   </div>
                 </div>
               )}
-              <div className="flex flex-col gap-3 text-sm p-4 rounded-2xl bg-slate-50">
+              <div className="flex flex-col gap-3 text-sm p-4 rounded-2xl bg-white-50">
                 <div className="flex flex-row gap-2  align-middle">
                   <p className="my-auto">User Sentiment: </p>
                   <p className="font-medium my-auto">
@@ -412,7 +412,7 @@ function CallInfo({
           {analytics &&
             analytics.questionSummaries &&
             analytics.questionSummaries.length > 0 && (
-              <div className="bg-slate-200 rounded-2xl min-h-[120px] p-4 px-5 my-3">
+              <div className="bg-white-200 rounded-2xl min-h-[120px] p-4 px-5 my-3">
                 <p className="font-semibold my-2 mb-4">Question Summary</p>
                 <ScrollArea className="rounded-md h-72 text-sm mt-3 py-3 leading-6 overflow-y-scroll whitespace-pre-line px-2">
                   {analytics?.questionSummaries.map((qs, index) => (
@@ -426,11 +426,11 @@ function CallInfo({
                 </ScrollArea>
               </div>
             )}
-          <div className="bg-slate-200 rounded-2xl min-h-[150px] max-h-[500px] p-4 px-5 mb-[150px]">
+          <div className="bg-white-200 rounded-2xl min-h-[150px] max-h-[500px] p-4 px-5 mb-[150px]">
             <p className="font-semibold my-2 mb-4">Transcript</p>
             <ScrollArea className="rounded-2xl text-sm h-96  overflow-y-auto whitespace-pre-line px-2">
               <div
-                className="text-sm p-4 rounded-2xl leading-5 bg-slate-50"
+                className="text-sm p-4 rounded-2xl leading-5 bg-white-50"
                 // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{ __html: marked(transcript) }}
               />

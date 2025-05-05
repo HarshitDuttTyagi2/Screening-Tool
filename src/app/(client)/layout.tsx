@@ -13,15 +13,15 @@ import { usePathname } from "next/navigation";
 const inter = Inter({ subsets: ["latin"] });
 
 const metadata = {
-  title: "FoloUp",
+  title: "Consultadd",
   description: " AI-powered Interviews",
   openGraph: {
-    title: "FoloUp",
+    title: "Consultadd",
     description: "AI-powered Interviews",
-    siteName: "FoloUp",
+    siteName: "Consultadd",
     images: [
       {
-        url: "/foloup.png",
+        url: "/FoloUp.png",
         width: 800,
         height: 600,
       },
@@ -61,7 +61,7 @@ export default function RootLayout({
             <div className="flex flex-row h-screen">
               {!pathname.includes("/sign-in") &&
                 !pathname.includes("/sign-up") && <SideMenu />}
-              <div className="ml-[200px] pt-[64px] h-full overflow-y-auto flex-grow">
+              <div className="pt-[64px] h-full overflow-y-auto flex-grow">
                 {children}
               </div>
             </div>
@@ -71,7 +71,7 @@ export default function RootLayout({
                   toast: "bg-white",
                   title: "text-black",
                   description: "text-red-400",
-                  actionButton: "bg-indigo-400",
+                  actionButton: "bg-green-400",
                   cancelButton: "bg-orange-400",
                   closeButton: "bg-white-400",
                 },
