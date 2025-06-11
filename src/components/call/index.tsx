@@ -411,58 +411,64 @@ function Call({ interview }: InterviewProps) {
                 </div>
               </div>
             )}
-            {isStarted && !isEnded && !isOldUser && (
-              <div className="flex flex-row p-2 grow">
-                <div className="border-x-2 border-grey w-[50%] my-auto min-h-[70%]">
-                  <div className="flex flex-col justify-evenly">
-                    <div
-                      className={`text-[22px] w-[80%] md:text-[26px] mt-4 min-h-[250px] mx-auto px-6`}
-                    >
-                      {lastInterviewerResponse}
-                    </div>
-                    <div className="flex flex-col mx-auto justify-center items-center align-middle">
-                      <Image
-                        src={interviewerImg}
-                        alt="Image of the interviewer"
-                        width={120}
-                        height={120
+{isStarted && !isEnded && !isOldUser && (
+  <div className="flex flex-row p-2 grow">
+    {/* Interviewer Side */}
+    <div className="border-x-2 border-grey w-[50%] my-auto min-h-[70%]">
+      <div className="flex flex-col justify-evenly">
+        <div className="text-[22px] w-[80%] md:text-[26px] mt-4 min-h-[250px] mx-auto px-6">
+          {lastInterviewerResponse}
+        </div>
 
-                        }
-                        className={`object-cover object-center mx-auto my-auto ${
-                          activeTurn === "agent"
-                            ? `border-4 border-[${interview.theme_color}] rounded-full`
-                            : ""
-                        }`}
-                      />
-                      <div className="font-semibold">Interviewer</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex flex-col justify-evenly w-[50%]">
-                  <div
-                    ref={lastUserResponseRef}
-                    className={`text-[22px] w-[80%] md:text-[26px] mt-4 mx-auto h-[250px] px-6 overflow-y-auto`}
-                  >
-                    {lastUserResponse}
-                  </div>
-                  <div className="flex flex-col mx-auto justify-center items-center align-middle">
-                    <Image
-                      src={`/user-icon.png`}
-                      alt="Picture of the user"
-                      width={120}
-                      height={120}
-                      className={`object-cover object-center mx-auto my-auto ${
-                        activeTurn === "user"
-                          ? `border-4 border-[${interview.theme_color}] rounded-full`
-                          : ""
-                      }`}
-                    />
-                    <div className="font-semibold">You</div>
-                  </div>
-                </div>
+        <div className="flex flex-col mx-auto justify-center items-center align-middle relative w-[120px] h-[120px] mt-2">
+          {/* Interviewer Ball Animation */}
+          {activeTurn === "agent" && (
+            <div className="absolute inset-0 flex justify-center items-center z-20">
+              <div className="relative w-[120px] h-[120px]">
+                <div className="absolute inset-0 rounded-full bg-purple-400 opacity-60 animate-ping-fast" />
+                <div className="absolute inset-3 rounded-full bg-purple-600 shadow-md" />
               </div>
-            )}
+            </div>
+          )}
+
+          {/* Fallback Static Circle */}
+          {activeTurn !== "agent" && (
+            <div className="absolute inset-0 flex justify-center items-center z-20">
+            <div className="relative w-[120px] h-[120px]">
+              <div className="absolute inset-0 rounded-full bg-purple-400 opacity-60 animate-ping-fast" />
+              <div className="absolute inset-3 rounded-full bg-purple-600 shadow-md" />
+            </div>
+            </div>
+          )}
+
+          <div className="font-semibold mt-[140px]">Interviewer</div>
+        </div>
+      </div>
+    </div>
+
+    {/* User Side */}
+    <div className="flex flex-col justify-evenly w-[50%]">
+      <div
+        ref={lastUserResponseRef}
+        className="text-[22px] w-[80%] md:text-[26px] mt-4 mx-auto h-[250px] px-6 overflow-y-auto"
+      >
+        {lastUserResponse}
+      </div>
+
+      <div className="flex flex-col mx-auto justify-center items-center align-middle mt-2">
+      <Image
+          src={`/user-icon.png`}
+          alt="Picture of the user"
+          width={120}
+          height={120}
+          className="object-cover object-center mx-auto my-auto rounded-full"
+        />
+        <div className="font-semibold">You</div>
+      </div>
+    </div>
+  </div>
+)}
+
             {isStarted && !isEnded && !isOldUser && (
               <div className="items-center p-2">
                 <AlertDialog>
@@ -568,7 +574,7 @@ function Call({ interview }: InterviewProps) {
             <span className="font-bold">
               Consult<span className="text-red-600">Add</span>
             </span>
-          </div>
+          </div> 
           <ArrowUpRightSquareIcon className="h-[1.5rem] w-[1.5rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-green-500 " />
         </a>
       </div>

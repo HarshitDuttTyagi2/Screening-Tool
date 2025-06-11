@@ -13,7 +13,7 @@ function QuestionAnswerCard({
 }: QuestionCardProps) {
   return (
     <>
-      <div className=" shadow-md mb-2 bg-white-50 rounded-2xl py-2">
+      <div className=" shadow-md mb-2 bg-slate-50 rounded-2xl py-2">
         <div className="flex flex-row items-center	">
           <CardTitle className="text-lg min-w-[42px] bg-green-200 rounded-full p-1 mx-3">
             <p className="my-auto text-center">{questionNumber}</p>

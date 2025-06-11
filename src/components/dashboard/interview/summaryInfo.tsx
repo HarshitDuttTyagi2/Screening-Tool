@@ -173,7 +173,7 @@ function SummaryInfo({ responses, interview }: SummaryProps) {
   return (
     <div className="h-screen z-[10] mx-2">
       {responses.length > 0 ? (
-        <div className="bg-white-200 rounded-2xl min-h-[120px] p-2 ">
+        <div className="bg-slate-200 rounded-2xl min-h-[120px] p-2 ">
           <div className="flex flex-row gap-2 justify-between items-center mx-2">
             <div className="flex flex-row gap-2 items-center">
               <p className="font-semibold my-2">Overall Analysis</p>
@@ -187,14 +187,14 @@ function SummaryInfo({ responses, interview }: SummaryProps) {
             Interview Description:{" "}
             <span className="font-medium">{interview?.description}</span>
           </p>
-          <div className="flex flex-col gap-1 my-2 mt-4 mx-2 p-4 rounded-2xl bg-white-50 shadow-md">
+          <div className="flex flex-col gap-1 my-2 mt-4 mx-2 p-4 rounded-2xl bg-slate-50 shadow-md">
             <ScrollArea className="h-[250px]">
               <DataTable data={tableData} interviewId={interview?.id || ""} />
             </ScrollArea>
           </div>
           <div className="flex flex-row gap-1 my-2 justify-center">
             <div className="flex flex-col">
-              <div className="flex flex-col gap-1 my-2 mt-4 mx-2 p-3 rounded-2xl bg-white-50 shadow-md max-w-[400px]">
+              <div className="flex flex-col gap-1 my-2 mt-4 mx-2 p-3 rounded-2xl bg-slate-50 shadow-md max-w-[400px]">
                 <div className="flex flex-row items-center justify-center gap-1 font-semibold mb-1 text-[15px]">
                   Average Duration
                   <InfoTooltip content="Average time users took to complete an interview" />
@@ -205,7 +205,7 @@ function SummaryInfo({ responses, interview }: SummaryProps) {
                   </p>
                 </div>
               </div>
-              <div className="flex flex-col items-center justify-center gap-1 mx-2 p-3 rounded-2xl bg-white-50 shadow-md max-w-[360px]">
+              <div className="flex flex-col items-center justify-center gap-1 mx-2 p-3 rounded-2xl bg-slate-50 shadow-md max-w-[360px]">
                 <div className="flex flex-row gap-1 font-semibold mb-1 text-[15px] mx-auto text-center">
                   Interview Completion Rate
                   <InfoTooltip content="Percentage of interviews completed successfully" />
@@ -218,7 +218,7 @@ function SummaryInfo({ responses, interview }: SummaryProps) {
                 </p>
               </div>
             </div>
-            <div className="flex flex-col gap-1 my-2 mt-4 mx-2 p-4 rounded-2xl bg-white-50 shadow-md max-w-[360px]">
+            <div className="flex flex-col gap-1 my-2 mt-4 mx-2 p-4 rounded-2xl bg-slate-50 shadow-md max-w-[360px]">
               <div className="flex flex-row gap-2 text-[15px] font-bold mb-3 mx-auto">
                 <SmileIcon />
                 Candidate Sentiment
@@ -264,7 +264,7 @@ function SummaryInfo({ responses, interview }: SummaryProps) {
                 height={120}
               />
             </div>
-            <div className="flex flex-col gap-1 my-2 mt-4 mx-2 p-4 rounded-2xl bg-white-50 shadow-md">
+            <div className="flex flex-col gap-1 my-2 mt-4 mx-2 p-4 rounded-2xl bg-slate-50 shadow-md">
               <div className="flex flex-row gap-2 text-[15px] font-bold mx-auto mb-1">
                 <UserCircleIcon />
                 Candidate Status
