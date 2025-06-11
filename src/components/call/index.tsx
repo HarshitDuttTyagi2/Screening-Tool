@@ -276,14 +276,14 @@ function Call({ interview }: InterviewProps) {
   }, [isEnded]);
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="flex justify-center items-center min-h-screen bg-white-100">
       {isStarted && <TabSwitchWarning />}
       <div className="bg-white rounded-md md:w-[80%] w-[90%]">
         <Card className="h-[88vh] rounded-lg border-2 border-b-4 border-r-4 border-black text-xl font-bold transition-all  md:block dark:border-white ">
           <div>
             <div className="m-4 h-[15px] rounded-lg border-[1px]  border-black">
               <div
-                className=" bg-indigo-600 h-[15px] rounded-lg"
+                className=" bg-green-600 h-[15px] rounded-lg"
                 style={{
                   width: isEnded
                     ? "100%"
@@ -304,7 +304,7 @@ function Call({ interview }: InterviewProps) {
               {!isEnded && (
                 <div className="flex mt-2 flex-row">
                   <AlarmClockIcon
-                    className="text-indigo-600 h-[1rem] w-[1rem] rotate-0 scale-100  dark:-rotate-90 dark:scale-0 mr-2 font-bold"
+                    className="text-green-600 h-[1rem] w-[1rem] rotate-0 scale-100  dark:-rotate-90 dark:scale-0 mr-2 font-bold"
                     style={{ color: interview.theme_color }}
                   />
                   <div className="text-sm font-normal">
@@ -321,7 +321,7 @@ function Call({ interview }: InterviewProps) {
               )}
             </CardHeader>
             {!isStarted && !isEnded && !isOldUser && (
-              <div className="w-fit min-w-[400px] max-w-[400px] mx-auto mt-2  border border-indigo-200 rounded-md p-2 m-2 bg-slate-50">
+              <div className="w-fit min-w-[400px] max-w-[400px] mx-auto mt-2  border border-green-200 rounded-md p-2 m-2 bg-white-50">
                 <div>
                   {interview?.logo_url && (
                     <div className="p-1 flex justify-center">
@@ -398,7 +398,7 @@ function Call({ interview }: InterviewProps) {
                       <AlertDialogFooter>
                         <AlertDialogCancel>Cancel</AlertDialogCancel>
                         <AlertDialogAction
-                          className="bg-indigo-600 hover:bg-indigo-800"
+                          className="bg-green-600 hover:bg-green-800"
                           onClick={async () => {
                             await onEndCallClick();
                           }}
@@ -411,62 +411,70 @@ function Call({ interview }: InterviewProps) {
                 </div>
               </div>
             )}
-            {isStarted && !isEnded && !isOldUser && (
-              <div className="flex flex-row p-2 grow">
-                <div className="border-x-2 border-grey w-[50%] my-auto min-h-[70%]">
-                  <div className="flex flex-col justify-evenly">
-                    <div
-                      className={`text-[22px] w-[80%] md:text-[26px] mt-4 min-h-[250px] mx-auto px-6`}
-                    >
-                      {lastInterviewerResponse}
-                    </div>
-                    <div className="flex flex-col mx-auto justify-center items-center align-middle">
-                      <Image
-                        src={interviewerImg}
-                        alt="Image of the interviewer"
-                        width={120}
-                        height={120}
-                        className={`object-cover object-center mx-auto my-auto ${
-                          activeTurn === "agent"
-                            ? `border-4 border-[${interview.theme_color}] rounded-full`
-                            : ""
-                        }`}
-                      />
-                      <div className="font-semibold">Interviewer</div>
-                    </div>
-                  </div>
-                </div>
+{isStarted && !isEnded && !isOldUser && (
+  <div className="flex flex-row p-2 grow">
+    {/* Interviewer Side */}
+    <div className="border-x-2 border-grey w-[50%] my-auto min-h-[70%]">
+      <div className="flex flex-col justify-evenly">
+        <div className="text-[22px] w-[80%] md:text-[26px] mt-4 min-h-[250px] mx-auto px-6">
+          {lastInterviewerResponse}
+        </div>
 
-                <div className="flex flex-col justify-evenly w-[50%]">
-                  <div
-                    ref={lastUserResponseRef}
-                    className={`text-[22px] w-[80%] md:text-[26px] mt-4 mx-auto h-[250px] px-6 overflow-y-auto`}
-                  >
-                    {lastUserResponse}
-                  </div>
-                  <div className="flex flex-col mx-auto justify-center items-center align-middle">
-                    <Image
-                      src={`/user-icon.png`}
-                      alt="Picture of the user"
-                      width={120}
-                      height={120}
-                      className={`object-cover object-center mx-auto my-auto ${
-                        activeTurn === "user"
-                          ? `border-4 border-[${interview.theme_color}] rounded-full`
-                          : ""
-                      }`}
-                    />
-                    <div className="font-semibold">You</div>
-                  </div>
-                </div>
+        <div className="flex flex-col mx-auto justify-center items-center align-middle relative w-[120px] h-[120px] mt-2">
+          {/* Interviewer Ball Animation */}
+          {activeTurn === "agent" && (
+            <div className="absolute inset-0 flex justify-center items-center z-20">
+              <div className="relative w-[120px] h-[120px]">
+                <div className="absolute inset-0 rounded-full bg-purple-400 opacity-60 animate-ping-fast" />
+                <div className="absolute inset-3 rounded-full bg-purple-600 shadow-md" />
               </div>
-            )}
+            </div>
+          )}
+
+          {/* Fallback Static Circle */}
+          {activeTurn !== "agent" && (
+            <div className="absolute inset-0 flex justify-center items-center z-20">
+            <div className="relative w-[120px] h-[120px]">
+              <div className="absolute inset-0 rounded-full bg-purple-400 opacity-60 animate-ping-fast" />
+              <div className="absolute inset-3 rounded-full bg-purple-600 shadow-md" />
+            </div>
+            </div>
+          )}
+
+          <div className="font-semibold mt-[140px]">Interviewer</div>
+        </div>
+      </div>
+    </div>
+
+    {/* User Side */}
+    <div className="flex flex-col justify-evenly w-[50%]">
+      <div
+        ref={lastUserResponseRef}
+        className="text-[22px] w-[80%] md:text-[26px] mt-4 mx-auto h-[250px] px-6 overflow-y-auto"
+      >
+        {lastUserResponse}
+      </div>
+
+      <div className="flex flex-col mx-auto justify-center items-center align-middle mt-2">
+      <Image
+          src={`/user-icon.png`}
+          alt="Picture of the user"
+          width={120}
+          height={120}
+          className="object-cover object-center mx-auto my-auto rounded-full"
+        />
+        <div className="font-semibold">You</div>
+      </div>
+    </div>
+  </div>
+)}
+
             {isStarted && !isEnded && !isOldUser && (
               <div className="items-center p-2">
                 <AlertDialog>
                   <AlertDialogTrigger className="w-full">
                     <Button
-                      className=" bg-white text-black border  border-indigo-600 h-10 mx-auto flex flex-row justify-center mb-8"
+                      className=" bg-white text-black border  border-green-600 h-10 mx-auto flex flex-row justify-center mb-8"
                       disabled={Loading}
                     >
                       End Interview{" "}
@@ -484,7 +492,7 @@ function Call({ interview }: InterviewProps) {
                     <AlertDialogFooter>
                       <AlertDialogCancel>Cancel</AlertDialogCancel>
                       <AlertDialogAction
-                        className="bg-indigo-600 hover:bg-indigo-800"
+                        className="bg-green-600 hover:bg-green-800"
                         onClick={async () => {
                           await onEndCallClick();
                         }}
@@ -498,10 +506,10 @@ function Call({ interview }: InterviewProps) {
             )}
 
             {isEnded && !isOldUser && (
-              <div className="w-fit min-w-[400px] max-w-[400px] mx-auto mt-2  border border-indigo-200 rounded-md p-2 m-2 bg-slate-50  absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+              <div className="w-fit min-w-[400px] max-w-[400px] mx-auto mt-2  border border-green-200 rounded-md p-2 m-2 bg-white-50  absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
                 <div>
                   <div className="p-2 font-normal text-base mb-4 whitespace-pre-line">
-                    <CheckCircleIcon className="h-[2rem] w-[2rem] mx-auto my-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-indigo-500 " />
+                    <CheckCircleIcon className="h-[2rem] w-[2rem] mx-auto my-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-green-500 " />
                     <p className="text-lg font-semibold text-center">
                       {isStarted
                         ? `Thank you for taking the time to participate in this interview`
@@ -520,7 +528,7 @@ function Call({ interview }: InterviewProps) {
                     >
                       <AlertDialogTrigger className="w-full flex justify-center">
                         <Button
-                          className="bg-indigo-600 text-white h-10 mt-4 mb-4"
+                          className="bg-green-600 text-white h-10 mt-4 mb-4"
                           onClick={() => setIsDialogOpen(true)}
                         >
                           Provide Feedback
@@ -538,10 +546,10 @@ function Call({ interview }: InterviewProps) {
               </div>
             )}
             {isOldUser && (
-              <div className="w-fit min-w-[400px] max-w-[400px] mx-auto mt-2  border border-indigo-200 rounded-md p-2 m-2 bg-slate-50  absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+              <div className="w-fit min-w-[400px] max-w-[400px] mx-auto mt-2  border border-green-200 rounded-md p-2 m-2 bg-slate-50  absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
                 <div>
                   <div className="p-2 font-normal text-base mb-4 whitespace-pre-line">
-                    <CheckCircleIcon className="h-[2rem] w-[2rem] mx-auto my-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-indigo-500 " />
+                    <CheckCircleIcon className="h-[2rem] w-[2rem] mx-auto my-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-green-500 " />
                     <p className="text-lg font-semibold text-center">
                       You have already responded in this interview or you are
                       not eligible to respond. Thank you!
@@ -558,16 +566,16 @@ function Call({ interview }: InterviewProps) {
         </Card>
         <a
           className="flex flex-row justify-center align-middle mt-3"
-          href="https://folo-up.co/"
+          href="https://www.consultadd.com/"
           target="_blank"
         >
           <div className="text-center text-md font-semibold mr-2  ">
             Powered by{" "}
             <span className="font-bold">
-              Folo<span className="text-indigo-600">Up</span>
+              Consult<span className="text-red-600">Add</span>
             </span>
-          </div>
-          <ArrowUpRightSquareIcon className="h-[1.5rem] w-[1.5rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-indigo-500 " />
+          </div> 
+          <ArrowUpRightSquareIcon className="h-[1.5rem] w-[1.5rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-green-500 " />
         </a>
       </div>
     </div>

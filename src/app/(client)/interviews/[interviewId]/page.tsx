@@ -265,10 +265,10 @@ function InterviewHome({ params, searchParams }: Props) {
           <div className="flex flex-row p-3 pt-4 justify-center gap-6 items-center sticky top-2 bg-white">
             <div className="font-bold text-md">{interview?.name}</div>
 
-            <div
+            {/* <div
               className="w-5 h-5 rounded-full border-2 border-white shadow"
               style={{ backgroundColor: iconColor }}
-            />
+            /> */}
 
             <div className="flex flex-row gap-3 my-auto">
               <UserIcon className="my-auto" size={16} />:{" "}
@@ -280,7 +280,7 @@ function InterviewHome({ params, searchParams }: Props) {
                 <TooltipTrigger asChild>
                   <Button
                     className={
-                      "bg-transparent shadow-none relative text-xs text-indigo-600 px-1 h-7 hover:scale-110 hover:bg-transparent"
+                      "bg-transparent shadow-none relative text-xs text-green-600 px-1 h-7 hover:scale-110 hover:bg-transparent"
                     }
                     variant={"secondary"}
                     onClick={(event) => {
@@ -303,15 +303,15 @@ function InterviewHome({ params, searchParams }: Props) {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button
-                    className="bg-transparent shadow-none text-xs text-indigo-600 px-0 h-7 hover:scale-110 relative"
+                  {/* <Button
+                    className="bg-transparent shadow-none text-xs text-green-600 px-0 h-7 hover:scale-110 relative"
                     onClick={(event) => {
                       event.stopPropagation();
                       seeInterviewPreviewPage();
                     }}
                   >
                     <Eye />
-                  </Button>
+                  </Button> */}
                 </TooltipTrigger>
                 <TooltipContent
                   className="bg-zinc-300"
@@ -327,15 +327,15 @@ function InterviewHome({ params, searchParams }: Props) {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button
-                    className="bg-transparent shadow-none text-xs text-indigo-600 px-0 h-7 hover:scale-110 relative"
+                  {/* <Button
+                    className="bg-transparent shadow-none text-xs text-green-600 px-0 h-7 hover:scale-110 relative"
                     onClick={(event) => {
                       event.stopPropagation();
                       setShowColorPicker(!showColorPicker);
                     }}
                   >
                     <Palette size={19} />
-                  </Button>
+                  </Button> */}
                 </TooltipTrigger>
                 <TooltipContent
                   className="bg-zinc-300"
@@ -352,7 +352,7 @@ function InterviewHome({ params, searchParams }: Props) {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
-                    className="bg-transparent shadow-none text-xs text-indigo-600 px-0 h-7 hover:scale-110 relative"
+                    className="bg-transparent shadow-none text-xs text-green-600 px-0 h-7 hover:scale-110 relative"
                     onClick={(event) => {
                       router.push(
                         `/interviews/${params.interviewId}?edit=true`,
@@ -394,7 +394,7 @@ function InterviewHome({ params, searchParams }: Props) {
                   <Switch
                     checked={isActive}
                     className={`ms-3 my-auto ${
-                      isActive ? "bg-indigo-600" : "bg-[#E6E7EB]"
+                      isActive ? "bg-green-600" : "bg-[#E6E7EB]"
                     }`}
                     onCheckedChange={handleToggle}
                   />
@@ -453,10 +453,10 @@ function InterviewHome({ params, searchParams }: Props) {
                 {filterResponses().length > 0 ? (
                   filterResponses().map((response) => (
                     <div
-                      className={`p-2 rounded-md hover:bg-indigo-100 border-2 my-1 text-left text-xs ${
+                      className={`p-2 rounded-md hover:bg-green-100 border-2 my-1 text-left text-xs ${
                         searchParams.call == response.call_id
-                          ? "bg-indigo-200"
-                          : "border-indigo-100"
+                          ? "bg-green-200"
+                          : "border-green-100"
                       } flex flex-row justify-between cursor-pointer w-full`}
                       key={response?.id}
                       onClick={() => {
@@ -492,7 +492,7 @@ function InterviewHome({ params, searchParams }: Props) {
                           <div className="flex flex-col items-center justify-center ml-auto flex-shrink-0">
                             {!response.is_viewed && (
                               <div className="w-4 h-4 flex items-center justify-center mb-1">
-                                <div className="text-indigo-500 text-xl leading-none">
+                                <div className="text-green-500 text-xl leading-none">
                                   ●
                                 </div>
                               </div>
@@ -508,8 +508,8 @@ function InterviewHome({ params, searchParams }: Props) {
                                   <TooltipProvider>
                                     <Tooltip>
                                       <TooltipTrigger asChild>
-                                        <div className="w-6 h-6 rounded-full bg-white border-2 border-indigo-500 flex items-center justify-center">
-                                          <span className="text-indigo-500 text-xs font-semibold">
+                                        <div className="w-6 h-6 rounded-full bg-white border-2 border-green-500 flex items-center justify-center">
+                                          <span className="text-green-500 text-xs font-semibold">
                                             {response?.analytics?.overallScore}
                                           </span>
                                         </div>

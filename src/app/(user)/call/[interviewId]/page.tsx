@@ -1,7 +1,7 @@
 "use client";
 
 import { useInterviews } from "@/contexts/interviews.context";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Call from "@/components/call";
 import Image from "next/image";
 import { ArrowUpRightSquareIcon } from "lucide-react";
@@ -30,17 +30,17 @@ function PopupLoader() {
       </div>
       <a
         className="flex flex-row justify-center align-middle mt-3"
-        href="https://folo-up.co/"
+        href="https://www.consultadd.com/"
         target="_blank"
         rel="noopener noreferrer"
       >
         <div className="text-center text-md font-semibold mr-2">
           Powered by{" "}
           <span className="font-bold">
-            Folo<span className="text-indigo-600">Up</span>
+            Consult<span className="text-red-600">Add</span>
           </span>
         </div>
-        <ArrowUpRightSquareIcon className="h-[1.5rem] w-[1.5rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-indigo-500" />
+        <ArrowUpRightSquareIcon className="h-[1.5rem] w-[1.5rem] text-green-500" />
       </a>
     </div>
   );
@@ -64,18 +64,75 @@ function PopUpMessage({ title, description, image }: PopupProps) {
       </div>
       <a
         className="flex flex-row justify-center align-middle mt-3"
-        href="https://folo-up.co/"
+        href="https://www.consultadd.com/"
         target="_blank"
         rel="noopener noreferrer"
       >
         <div className="text-center text-md font-semibold mr-2">
           Powered by{" "}
           <span className="font-bold">
-            Folo<span className="text-indigo-600">Up</span>
+            Consult<span className="text-red-600">Add</span>
           </span>
         </div>
-        <ArrowUpRightSquareIcon className="h-[1.5rem] w-[1.5rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-indigo-500" />
+        <ArrowUpRightSquareIcon className="h-[1.5rem] w-[1.5rem] text-green-500" />
       </a>
+    </div>
+  );
+}
+
+// ✅ CameraTile Component integrated directly inside
+function CameraTile() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [dragging, setDragging] = useState(false);
+  const [position, setPosition] = useState({ x: 50, y: 50 });
+
+  useEffect(() => {
+    const getCamera = async () => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        if (videoRef.current) {
+          videoRef.current.srcObject = stream;
+        }
+      } catch (err) {
+        console.error("Camera access denied:", err);
+      }
+    };
+    getCamera();
+  }, []);
+
+  const handleMouseDown = () => setDragging(true);
+  const handleMouseUp = () => setDragging(false);
+  const handleMouseMove = (e: MouseEvent) => {
+    if (dragging) {
+      setPosition((prev) => ({
+        x: prev.x + e.movementX,
+        y: prev.y + e.movementY,
+      }));
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", handleMouseUp);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+  });
+
+  return (
+    <div
+      onMouseDown={handleMouseDown}
+      style={{
+        position: "fixed",
+        top: position.y,
+        left: position.x,
+        zIndex: 9999,
+        cursor: "move",
+      }}
+      className="w-80 h-50 border-2 border-black rounded-lg overflow-hidden shadow-lg bg-white"
+    >
+      <video ref={videoRef} autoPlay muted className="w-full h-full object-cover" />
     </div>
   );
 }
@@ -85,6 +142,7 @@ function InterviewInterface({ params }: Props) {
   const [isActive, setIsActive] = useState(true);
   const { getInterviewById } = useInterviews();
   const [interviewNotFound, setInterviewNotFound] = useState(false);
+
   useEffect(() => {
     if (interview) {
       setIsActive(interview?.is_active === true);
@@ -108,7 +166,6 @@ function InterviewInterface({ params }: Props) {
     };
 
     fetchinterview();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -131,27 +188,30 @@ function InterviewInterface({ params }: Props) {
             image="/closed.png"
           />
         ) : (
-          <Call interview={interview} />
+          <>
+            <Call interview={interview} />
+            <CameraTile /> {/* 👁️ Shows movable camera tile only during active interview */}
+          </>
         )}
       </div>
-      <div className=" md:hidden flex flex-col items-center md:h-[0px] justify-center  my-auto">
+
+      <div className=" md:hidden flex flex-col items-center justify-center my-auto">
         <div className="mt-48 px-3">
           <p className="text-center my-5 text-md font-semibold">
             {interview?.name}
           </p>
           <p className="text-center text-gray-600 my-5">
-            Please use a PC to respond to the interview. Apologies for any
-            inconvenience caused.{" "}
+            Please use a PC to respond to the interview. Apologies for any inconvenience caused.
           </p>
         </div>
         <div className="text-center text-md font-semibold mr-2 my-5">
           Powered by{" "}
           <a
             className="font-bold underline"
-            href="www.folo-up.co"
+            href="https://www.consultadd.com/"
             target="_blank"
           >
-            Folo<span className="text-indigo-600">Up</span>
+            Consult<span className="text-red-600">Add</span>
           </a>
         </div>
       </div>
